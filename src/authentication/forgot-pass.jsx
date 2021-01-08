@@ -1,7 +1,7 @@
 /*
 ;==========================================
 ; Title:  forgot password component
-; Author: Bryan Caldeira
+; Author: Bryan Caldeira, Dinesh
 ; Date:   21 Dec 2020
 ;==========================================
 */

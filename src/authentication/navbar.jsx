@@ -1,7 +1,7 @@
 /*
 ;==========================================
 ; Title:  navbar component
-; Author: Bryan Caldeira
+; Author: Bryan Caldeira, Dinesh
 ; Date:   21 Dec 2020
 ;==========================================
 */
@@ -11,12 +11,11 @@ import "./css/navbar.css";
 import logo from "../logo.svg";
 
 class Navbar extends Component {
-
   render() {
     return (
       <nav>
         <p id="brand">
-          Fantasy Eleven <object id="logo" data={logo}></object>
+          Fantasy Eleven <object id="logo" data={logo}/>
         </p>
       </nav>
     );

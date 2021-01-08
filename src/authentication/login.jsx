@@ -1,17 +1,16 @@
 /*
 ;==========================================
 ; Title:  login component
-; Author: Bryan Caldeira
+; Author: Bryan Caldeira, Dinesh
 ; Date:   21 Dec 2020
 ;==========================================
 */
 
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Link, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import axios from "axios";
 import "../fonts.css";
 import "./css/login-signup-forgotpass.css"
-
 import SignUp from "./signup";
 import Navbar from "./navbar";
 import ForgotPass from "./forgot-pass";
@@ -20,13 +19,7 @@ import background from "./images/back1.png";
 var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 var url;
 
-function Redirect(){
-  const history = useHistory();
-  history.push("/dashboard");
-}
-
 class Login extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -38,6 +31,14 @@ class Login extends Component {
     this.getUser = this.getUser.bind(this);
   }
 
+  // To update the state variable values 😎 
+  handleChange({target}) {
+    this.setState({
+      [target.name]: target.value,
+    });
+  }
+
+  // Display message and clear it in 5 sec 😎 
   clearMessage(value, color) {
     let message = document.getElementById("mess");
     message.innerHTML = value;
@@ -47,42 +48,48 @@ class Login extends Component {
     }, 5000);
   }
 
-  handleChange({target}) {
-    this.setState({
-      [target.name]: target.value,
-    });
-  }
-
-  getUser(event) {
+  getUser(event) {    
+    // Check if username or email field value is above 2...Because a valid email can have minimun of 3 chars.
+    // Check if password length is min of 8 chars
     if (this.state.usernameEmail.length > 2 && this.state.password.length > 7) {
+
+      // Check if Email or Username to hit appropriate link 🤓
       if (this.state.usernameEmail.match(emailPattern)) {
+        // Extract user details using email id 📧 
         url = `http://127.0.0.1:5000/exe/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
-      } else {
+      } 
+      else {
+        // Extract user details using username 👦 
         url = `http://127.0.0.1:5000/exu/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
       }
 
+      // Make a API call 😎 
       axios
         .get(url)
         .then((response) => {
           this.clearMessage(response.data['message'], response.data['check']  ? "#645AFC" : "#F60000");
+          // Reset the login form
           document.getElementById("login-form").reset();
 
+          // If check returned true re-direct to /dashboard 🤓 
           if(response.data['check']){
             window.location.replace('/dashboard');
           }
           
         })
         .catch((error) => {
+          // If some error occurs 😣 
           console.log(error);
         });
     }
     else{
+      // Display message based on what was invalid 🤓 
       this.clearMessage(this.state.usernameEmail.length > 2   ? "Invaild password" : "Invalid username or email-id", "#F60000");
     }
+
+    // Prevent form from reloading the page
     event.preventDefault();
   }
-
-
 
   render() {
     return (
@@ -133,6 +140,5 @@ class Login extends Component {
     );
   }
 }
-
 
 export default Login;

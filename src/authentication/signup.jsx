@@ -10,9 +10,6 @@ import React, {Component} from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
 class SignUp extends Component {
   constructor() {
     super();
@@ -31,6 +28,7 @@ class SignUp extends Component {
     this.insertUser = this.insertUser.bind(this);
   }
 
+  // To update the state variable values 😎 
   handleChange({target}) {
     this.setState({
       [target.name]: target.value,
@@ -38,6 +36,7 @@ class SignUp extends Component {
     console.log("in handlechange");
   }
 
+  // Display message and clear it in 5 sec 😎 
   clearMessage(value, color) {
     let message = document.getElementById("mess");
     message.innerHTML = value;
@@ -47,13 +46,18 @@ class SignUp extends Component {
     }, 5000);
   }
 
+  // Check if username is available in database 😎 
   checkUname(event) {
+
+    // Make API call only when username is above 7 characters 🤓 
+    // Hit the API every 1 sec 😎 
     if(this.state.username.length > 7) {
       setTimeout(()=>{
         let unameMess = document.getElementById('uname-mess');
         let url = `http://127.0.0.1:5000/ck/${btoa(event.target.value)}/`;
         axios.get(url).then((response) => {
           unameMess.innerHTML = response.data['message'];
+
           if (response.data['check']) {
             unameMess.style.color = "#645AFC";
           } else {
@@ -62,11 +66,12 @@ class SignUp extends Component {
         }).catch((error) => {
           console.log(error);
         });
-      }, 700);
+      }, 1000);
     }
   }
 
 
+  // Verify user details 😎 
   verifyUserDetails(event) {
     document.getElementById('uname-mess').innerHTML = '';
     document.getElementById('uname-mess').style.display = 'none';
@@ -89,6 +94,7 @@ class SignUp extends Component {
           });
 
           if (response.data["check"]) {
+            // Maker username and email field readonly
             document.getElementById('uname').readOnly = true;
             document.getElementById('email').readOnly = true;
             this.clearMessage(response.data['message'], "#645AFC");
@@ -139,31 +145,38 @@ class SignUp extends Component {
 
   // Insert User details 😎 
   insertUser(event){
-    let url = `http://127.0.0.1:5000/in/${btoa(this.state.username)}/${btoa(this.state.email)}/${btoa('bryan')}/${btoa(this.state.password)}/`;
     
-    axios.get(url).then((response)=>{
-      // Check User account was created 🤓 
-      this.clearMessage(response.data['message'], response.data['check'] ? "#645AFC" : "#F60000");
+    // Check if password fields match 🧐
+    if(this.state.password === this.state.repassword){
+      let url = `http://127.0.0.1:5000/in/${btoa(this.state.username)}/${btoa(this.state.email)}/${btoa('bryan')}/${btoa(this.state.password)}/`;
       
-      // After 3sec change the url to /login if Account Created 🙂 
-      if(response.data['check']){
-        setTimeout(()=>{
-          window.location.replace('/login');
-        }, 3000);
-      }
+      axios.get(url).then((response)=>{
+        // Check User account was created 🤓 
+        this.clearMessage(response.data['message'], response.data['check'] ? "#645AFC" : "#F60000");
+        
+        // After 3sec change the url to /login if Account Created 🙂 
+        if(response.data['check']){
+          setTimeout(()=>{
+            window.location.replace('/login');
+          }, 3000);
+        }
 
-      // Else reload the same page 😔  
-      else{
-        setTimeout(()=>{
-          window.location.reload();
-        }, 3000);
-      }
+        // Else reload the same page 😔  
+        else{
+          setTimeout(()=>{
+            window.location.reload();
+          }, 3000);
+        }
 
-      document.getElementById('signup-form').reset();
-    }).catch((error) => {
-      // Some error occured 😣 
-      console.log(error);
-    });
+        document.getElementById('signup-form').reset();
+      }).catch((error) => {
+        // Some error occured 😣 
+        console.log(error);
+      });
+    }
+    else{
+      this.clearMessage("Password don't match", "#F60000");
+    }
 
     // Prevent form from reloading the page 🧐 
     event.preventDefault()
@@ -189,12 +202,12 @@ class SignUp extends Component {
             {/* Display this when verified is 'true' 😎 */}
             {this.state.verified ?
               <input onChange={this.handleChange} name="password" id="pass" type="password" className="inp form-control"
-                     placeholder="Enter password..." required/> : null}
+                     placeholder="Enter password..." pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$" title="Password must contain a Uppercase Letter a Lowercase Letter a Number and a Special charcater [@#$%^&+=]" required/> : null}
             
             {/* Display this when verified is 'true' 😎 */}
             {this.state.verified ?
               <input onChange={this.handleChange} name="repassword" id="repass" type="password" className="inp form-control"
-                     placeholder="Confirm password..." required/> : null}
+                     placeholder="Confirm password..." pattern="^[a-zA-Z0-9]+[\._]?[a-zA-Z0-9]+[@]\w+[.]\w{2,3}$" required/> : null}
             <button type="submit" id="sgn-btn">Verify</button>
             {/* The error messages */}
             <p id="mess"></p>
