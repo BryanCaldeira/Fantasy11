@@ -1,0 +1,162 @@
+/*
+;==========================================
+; Title:  Login, SignUp and Forgotpassword css
+; Author: Bryan Caldeira
+; Date:   21 Dec 2020
+;==========================================
+*/
+
+body{
+    background: #dbdbdb !important;
+}
+
+/* Input tags class */
+.inp{
+  display: inline-block !important;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  width: 80% !important;
+  height: 45px;
+}
+
+/* Login and SignUp button */
+#lgn-btn,
+#sgn-btn
+{
+  display: inline-block;
+  width: 80%;
+  margin-top: 10px;
+  height: 60px;
+  font-size: 17px;
+  background: linear-gradient(to right, #0A71EB, #289EF9 70%);
+  color: black;
+  border: none;
+  outline: none !important;
+  border-radius: 20px;
+}
+
+/* Google auth button */
+#oauth-btn {
+  display: inline-block;
+  width: 80%;
+  margin-top: 10px;
+  height: 60px;
+  background: linear-gradient(to right, #4a91f2 ,#4285F4);
+  color: black;
+  border: none;
+  outline: none !important;
+  border-radius: 20px;
+  font-size: 17px;
+}
+
+/* Google auth button image */
+#oauth-btn>img{
+  height: 80%;
+  background-color: white;
+  border-radius: 20px;
+}
+
+/* Buttons hover transform effect */
+#lgn-btn:hover,
+#lgn-btn:active,
+#sgn-btn:hover,
+#sgn-btn:active,
+#oauth-btn:hover,
+#oauth-btn:active
+{
+  transform: scaleY(1.05);
+}
+
+/* Bootstrap row */
+.row{
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Form column and form divs text-aligned to center*/
+#form-col,
+#login-form, #signup-form, #forgotpass-form {
+  text-align: center !important;
+}
+
+/* Form div */
+#form-div {
+  display: inline-block;
+  background-color: white;
+  box-shadow:0 0 40px 2px rgba(0, 0, 0, 0.048),
+  0 7px 10px rgba(0, 0, 0, 0.34);
+  border-radius: 5px;
+  padding: 40px 0 40px 0;
+  margin-bottom: 50px;
+  width: 450px;
+  z-index: 2;
+}
+
+/* Image on larger devices background */
+#bg{
+  display:flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Image on larger devices */
+#bg-img{
+  width: 100%;
+}
+
+/* The Login, Signup, Forgotpassword tags */
+#lgn-tag, #sgn-tag, #fgt-tag{
+  margin-top: 15px;
+  font-size: 14px;
+  font-family: 'Righteous', cursive;
+  cursor: default !important;
+}
+
+/* Error message <p> tag */
+#mess, uname-mess{
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Horizontal line */
+hr{
+  width: 80%;
+  box-shadow: 1px 0 1px #000000;
+}
+
+/* OR <p> tag */
+#or-tag{
+  font-family: 'Righteous', cursive;
+  margin-bottom: -25px;
+  cursor: default !important;
+}
+
+/* Span inside the or-tag */
+#or-tag>span{
+  display: inline-block;
+  width: 25px;
+  background-color: white;
+}
+
+/* Tablets and other Monitors */
+@media(max-width: 992px){
+  /* Don't display the image when screen size is less than 992 */
+  #bg{
+    display: none !important;
+  }
+  #form-div{
+    margin-top: 140px;
+  }
+}
+
+/* Mobile Phones */
+@media(max-width: 600px){
+  #form-div{
+    width: 100%;
+  }
+}

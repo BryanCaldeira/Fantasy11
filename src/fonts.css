@@ -1,0 +1,25 @@
+/*
+;==========================================
+; Title:  Fonts css
+; Author: Bryan Caldeira
+; Date:   21 Dec 2020
+;==========================================
+*/
+
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script&family=Lobster&family=Lobster+Two:ital@1&family=Pacifico&family=Poppins:wght@200;300;400&family=Righteous&family=Roboto:wght@300;500&family=Russo+One&family=Teko&display=swap');
+
+/* font family available */
+/*
+    font-family: 'Anton', sans-serif;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Lobster', cursive;
+    font-family: 'Lobster Two', cursive;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Righteous', cursive;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Russo One', sans-serif;
+    font-family: 'Teko', sans-serif;
+*/

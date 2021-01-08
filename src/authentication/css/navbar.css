@@ -1,0 +1,32 @@
+/*
+;==========================================
+; Title:  Navigation Bar css
+; Author: Bryan Caldeira
+; Date:   21 Dec 2020
+;==========================================
+*/
+
+/* Nav tag css */
+nav {
+  background-color: #454CFD;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+/* Nav tag brand */
+#brand {
+  font-family: "Anton";
+  color: white;
+  margin-top: 10px;
+  margin-left: 15px;
+  font-size: 30px;
+}
+
+/* Brand Logo */
+#logo{
+  display: inline-block;
+  width: 25px;
+}
