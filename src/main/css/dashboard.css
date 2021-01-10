@@ -1,0 +1,80 @@
+.matches {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.matches::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.matches-outer {
+  width: 100%;
+  height: 170px;
+  margin-bottom: 40px;
+}
+
+.matches-inner {
+  padding: 20px;
+  background: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.make-team-btn {
+  background: linear-gradient(to right, #0083b0, #00b4db);
+  border: none;
+  padding: 10px 30px 10px 30px;
+  border-radius: 20px;
+  margin-top: 20px;
+  outline: none !important;
+  font-family: "Russo One", sans-serif;
+}
+
+.playernames-col {
+    height: auto;
+    width: 100%;
+}
+
+.playernames-col-inner {
+  background: white;
+  padding: 50px;
+  border-radius: 30px;
+  height: 100%;
+  width: 100%;
+}
+
+.players {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.players::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.country-tag{
+    font-family: 'Anton', sans-serif;
+}
+
+.player-name-tag{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .matches-outer {
+    height: auto;
+  }
+
+  .matches-inner {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(40px);
+  }
+
+  .playernames-col-inner {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(40px);
+    margin-bottom: 30px;
+  }
+}
