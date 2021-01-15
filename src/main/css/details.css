@@ -1,0 +1,50 @@
+.country-tag {
+  font-family: 'Anton', sans-serif;
+}
+
+.player-name-tag {
+  font-family: "Poppins", sans-serif;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+#make-team-btn {
+  font-family: "Poppins", sans-serif;
+  padding: 10px 30px 10px 30px;
+}
+
+.player-name{
+    margin-left: 10px;
+}
+
+.playernames-col {
+  margin-top: 0 !important;
+  height: auto;
+  width: 100%;
+}
+
+.playernames-col-inner {
+  background: white;
+  padding: 50px;
+  border-radius: 30px;
+  height: 100%;
+  width: 100%;
+}
+
+.players {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.players::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+@media (max-width: 768px) {
+
+  .playernames-col-inner {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(40px);
+    margin-bottom: 30px;
+  }
+}

@@ -6,6 +6,9 @@ import "./css/dashboard.css"
 
 import Background from './images/background.jpg'
 
+import { Link } from "react-router-dom";
+
+var apikey = "emBYZiXkANWVscCOVI0um4b2Unl2";
 
 class DashBoard extends Component {
   constructor(){
@@ -14,22 +17,22 @@ class DashBoard extends Component {
       titles: [],
       squad: [],
       load: false,
-      showMatchDetails: false,
-    }
-    this.matchs = this.matchs.bind(this);
+    };
+    this.matches = this.matches.bind(this);
     this.matchTiming = this.matchTiming.bind(this);
+    this.matches();
   }
 
-  matchs(){
+  matches(){
     axios
-      .get("https://cricapi.com/api/cricket?apikey=vZ8QkC2tRycUB13qronYltfQIY72")
+      .get(`http://127.0.0.1:5000/matches/`)
       .then((response) => {
         console.log(response.data);
         
-        response.data['data'].forEach(match=>{
+        response.data['final_data'].forEach(match=>{
 
-        this.state.titles.push({"uid": match.unique_id, "title": match.title});
-        })
+        this.state.titles.push({"uid": match.uid, "title": match.title});
+        });
         this.setState({
           load: true
         })   
@@ -41,9 +44,9 @@ class DashBoard extends Component {
 
   matchTiming(uid){
     axios
-      .get(`https://cricapi.com/api/fantasySummary?apikey=vZ8QkC2tRycUB13qronYltfQIY72&unique_id=${uid}`)
+      .get(`https://cricapi.com/api/fantasySummary?apikey=${apikey}&unique_id=${uid}`)
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         var matchDateTime = new Date(response.data.dateTimeGMT).toLocaleTimeString({},
             {timeZone:'UTC',hour12:true,hour:'numeric',minute:'numeric', day: 'numeric', month: 'numeric', year: 'numeric'}
         );
@@ -55,36 +58,20 @@ class DashBoard extends Component {
       })
   }
 
-  matchInfo(uid){
-    this.setState({
-      squad: [],
-    })
-    axios
-      .get(`https://cricapi.com/api/fantasySquad?apikey=vZ8QkC2tRycUB13qronYltfQIY72&unique_id=${uid}`)
-      .then((response) => {
-
-        console.log("data: ",response.data)
-        this.state.squad.push(response.data.squad[0], response.data.squad[1])
-        this.setState({
-          showMatchDetails: true,
-        });
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
 
   componentDidMount(){
     document.body.style.background= `url(${Background})`;
     document.body.style.backgroundColor = "#000000";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundSize = "cover";
-    this.matchs();
   }
 
-
+  componentWillUnmount() {
+    document.body.style.background= 'transparent';
+    document.body.style.backgroundColor = "transparent";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundSize = "cover";
+  }
 
   render() {
     if(!this.state.load){
@@ -93,50 +80,21 @@ class DashBoard extends Component {
     return (
     <React.Fragment>
       <Navbar />
-      {!this.state.showMatchDetails ? 
-      (
         <div className="container" style={{marginTop: '100px', height:'80vh', overflow: 'hidden'}}>
           <div className="row matches" style={{overflow: 'scroll'}}>
             {this.state.titles.map((d)=>
-              
+
               <div className="col-12 col-md-6 matches-outer">
                 <div className="matches-inner">
                   <h5>{d.title}</h5>
-                  <p>{d.dateTime}</p>
-                  <button onClick={()=>{this.matchInfo(d.uid); this.matchTiming(d.uid)}} className="make-team-btn">Details</button>
+                  <Link to={{pathname: '/details' , state: { 'uid': d.uid }}}><button className="details-btn">Details</button></Link>
                 </div>
               </div>
             )}
           </div>
         </div>
-      ) :
-      (
-        <div className="container" style={{marginTop: '100px', height:'80vh', overflow: 'hidden'}}>
-          <div className="row players" style={{overflow: 'scroll'}}>
-
-            <div className="col-12 col-md-6 playernames-col">
-              <div className="playernames-col-inner">
-                <h3 className="country-tag">{this.state.squad[0].name} LIST</h3>
-                {this.state.squad[0].players.map((player, index)=>
-                  <p className="player-name-tag">{index+1}&#41; {player.name}</p>
-                )}
-              </div>
-            </div>
-
-            <div className="col-12 col-md-6 playernames-col">
-              <div className="playernames-col-inner">
-              <h3 className="country-tag">{this.state.squad[1].name} LIST</h3>
-                {this.state.squad[1].players.map((player, index)=>
-                  <p className="player-name-tag">{index+1}&#41; {player.name}</p>
-                )}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      )}
     </React.Fragment>
-  );
+    );
   
   }
 }
