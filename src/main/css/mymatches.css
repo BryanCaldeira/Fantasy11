@@ -1,0 +1,65 @@
+#matches-container {
+  margin-top: 150px;
+}
+
+#matches-row {
+  padding: 60px;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+#switch-p {
+  text-align: center;
+  width: 100%;
+}
+
+.match-type-tag {
+  display: inline-block;
+  cursor: default;
+  font-family: "Anton", sans-serif;
+  font-size: 20px;
+}
+
+#all-match-types {
+  position: relative;
+  width: 100%;
+}
+
+#live-matches {
+  margin-top: 100px;
+}
+
+#upcoming-matches {
+  display: none;
+  margin-top: 100px;
+  top: 0;
+  left: 0;
+}
+
+.match-info{
+    background-color: #20CEFD;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.match-info-title{
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+.match-info-datetime{
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+@media(max-width: 768px){
+    #matches-row{
+        padding: 40px;
+    }
+}

@@ -20,7 +20,7 @@ nav {
 #brand {
   font-family: "Anton";
   color: white;
-  margin-top: 10px;
+  margin-top: 17px;
   margin-left: 15px;
   font-size: 30px;
 }
@@ -29,4 +29,108 @@ nav {
 #logo{
   display: inline-block;
   width: 25px;
+}
+
+#user-btn{
+  background: transparent;
+  border: none;
+  outline: none;
+  float: right;
+}
+
+#user-btn:active {
+  transform: scale(1.1);
+}
+
+@keyframes ExpandUserPanelLarge {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 30%;
+    opacity: 100%;
+  }
+}
+
+@keyframes ExpandUserPanelMobile {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 100%;
+  }
+}
+
+@keyframes CollapseUserPanelLarge {
+  from {width: 30%}
+  to {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes CollapseUserPanelMobile {
+  from {width: 100%}
+  to {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+#user-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100vh;
+  background: white;
+  box-shadow: 0 0 17px 1px rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#user-option-list {
+  margin-top: 100px;
+  list-style: none;
+  margin-left: -40px;
+  text-align: center;
+}
+
+#user-option-list li{
+  padding: 20px 0 20px 0;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  color: black;
+}
+
+#user-lgn{
+  margin-top: 5px;
+  margin-right: 20px;
+  float: right;
+  background-color: rgb(43, 234, 251);
+  color: black;
+  font-size: 17px;
+  font-family: 'Russo One', sans-serif;
+  padding: 5px 20px;
+  border-radius: 40px;
+}
+
+#user-panel-lgout{
+  margin-top: 20px;
+  background-color: rgb(43, 234, 251);
+  color: black;
+  font-size: 20px;
+  font-family: 'Russo One', sans-serif;
+  padding: 10px 25px;
+  border-radius: 40px;
+}
+
+
+@media(max-width: 458px) {
+
 }

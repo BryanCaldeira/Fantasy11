@@ -1,0 +1,29 @@
+#team-row{
+    display: flex;
+    justify-content: center;
+}
+
+
+#team-object{
+    margin-top: 150px;
+    width: 70%;
+    border-radius: 30px;
+}
+
+
+.player-names{
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+@media(max-width:768px){
+    #team-row{
+        margin-top: auto;
+        align-items: center;
+    }
+
+    #team-object{
+        width: 100%;
+    }
+}

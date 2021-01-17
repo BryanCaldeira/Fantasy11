@@ -2,6 +2,7 @@
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
+
 .matches::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
@@ -21,7 +22,6 @@
   text-align: center;
   font-family: "Poppins", sans-serif;
 }
-
 
 .details-btn {
   background: linear-gradient(to right, #0083b0, #00b4db);

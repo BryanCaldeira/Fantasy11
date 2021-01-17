@@ -207,7 +207,7 @@ class SignUp extends Component {
             {/* Display this when verified is 'true' 😎 */}
             {this.state.verified ?
               <input onChange={this.handleChange} name="repassword" id="repass" type="password" className="inp form-control"
-                     placeholder="Confirm password..." pattern="^[a-zA-Z0-9]+[\._]?[a-zA-Z0-9]+[@]\w+[.]\w{2,3}$" required/> : null}
+                     placeholder="Confirm password..." pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$" required/> : null}
             <button type="submit" id="sgn-btn">Verify</button>
             {/* The error messages */}
             <p id="mess"></p>

@@ -1,0 +1,102 @@
+body {
+  background: white;
+}
+
+#user-avatar-div {
+  text-align: center;
+  margin: 150px auto;
+}
+
+#user-details-background {
+  z-index: 1 !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 992px;
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  opacity: 0.4;
+}
+
+#user-avatar {
+  position: relative;
+  z-index: 2 !important;
+  width: 300px;
+  display: inline-block;
+}
+
+#user-name,
+#user-email {
+  position: relative;
+  z-index: 2 !important;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  font-size: 30px;
+}
+
+#delete-btn {
+  position: relative;
+  z-index: 2 !important;
+  font-family: "Russo One", sans-serif;
+  font-size: 25px;
+  margin-top: 60px;
+  padding: 10px 20px;
+}
+
+#delete-modal{
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 1px black;
+}
+
+#conf-delete{
+  padding: 10px 20px;
+  font-family: "Russo One", sans-serif;
+  font-size: 25px;
+}
+
+#close-tag{
+  cursor: pointer;
+  font-family: "Russo One", sans-serif;
+  font-size: 25px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+@media (max-width: 993px){
+    #user-details-background{
+        margin-top: 8%;
+        width: 100%;
+    }
+
+    #delete-modal{
+      width: 70%;
+    }
+}
+
+@media (max-width: 458px) {
+  #user-avatar {
+    width: 50%;
+  }
+
+  #user-name,
+  #user-email,
+  #delete-btn {
+    font-size: 20px;
+  }
+  #delete-modal{
+    width: 90%;
+  }
+}

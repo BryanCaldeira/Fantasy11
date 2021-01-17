@@ -27,11 +27,10 @@ class DashBoard extends Component {
     axios
       .get(`http://127.0.0.1:5000/matches/`)
       .then((response) => {
-        console.log(response.data);
+        console.log("final_data: ",response.data);
         
         response.data['final_data'].forEach(match=>{
-
-        this.state.titles.push({"uid": match.uid, "title": match.title});
+        this.state.titles.push({"uid": match.uid, "title": match.title, "dateTime": match.dateTime});
         });
         this.setState({
           load: true
@@ -58,19 +57,18 @@ class DashBoard extends Component {
       })
   }
 
-
   componentDidMount(){
     document.body.style.background= `url(${Background})`;
-    document.body.style.backgroundColor = "#000000";
+    document.body.style.backgroundColor = "#FFFFFF";
     document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = "";
   }
 
   componentWillUnmount() {
     document.body.style.background= 'transparent';
     document.body.style.backgroundColor = "transparent";
     document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = "contain";
   }
 
   render() {
@@ -87,6 +85,7 @@ class DashBoard extends Component {
               <div className="col-12 col-md-6 matches-outer">
                 <div className="matches-inner">
                   <h5>{d.title}</h5>
+                  <h6>{d.dateTime}</h6>
                   <Link to={{pathname: '/details' , state: { 'uid': d.uid }}}><button className="details-btn">Details</button></Link>
                 </div>
               </div>

@@ -16,12 +16,13 @@ import Navbar from "./navbar";
 import ForgotPass from "./forgot-pass";
 import background from "./images/back1.png";
 
-var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+var emailPattern = /^[a-zA-Z0-9]+[\._]?[a-zA-Z0-9]+[@]\w+[.]\w{2,3}$/;
 var url;
+var data;
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       usernameEmail: "",
       password: "",
@@ -31,8 +32,8 @@ class Login extends Component {
     this.getUser = this.getUser.bind(this);
   }
 
-  componentWillMount() {
-    document.body.style.background =  "#dbdbdb";
+  componentDidMount() {
+    document.body.style.background =  "#E7E7E9";
   }
 
   componentWillUnmount() {
@@ -59,16 +60,19 @@ class Login extends Component {
   getUser(event) {    
     // Check if username or email field value is above 2...Because a valid email can have minimun of 3 chars.
     // Check if password length is min of 8 chars
+
+    console.log('Login');
+
     if (this.state.usernameEmail.length > 2 && this.state.password.length > 7) {
 
       // Check if Email or Username to hit appropriate link 🤓
       if (this.state.usernameEmail.match(emailPattern)) {
         // Extract user details using email id 📧 
-        url = `https://fantasy11api.herokuapp.com/exe/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
+        url = `http://127.0.0.1:5000/exe/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
       } 
       else {
         // Extract user details using username 👦 
-        url = `https://fantasy11api.herokuapp.com/exu/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
+        url = `http://127.0.0.1:5000/exu/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
       }
 
       // Make a API call 😎 
@@ -81,6 +85,12 @@ class Login extends Component {
 
           // If check returned true re-direct to /dashboard 🤓 
           if(response.data['check']){
+            // Creating a Cookie that expires in 5 mins
+            let userData = response.data
+            let date = new Date();
+            date.setTime(date.getTime()+(15*60*1000));
+            document.cookie = "userData=" + JSON.stringify(userData) + ";expires="+ date.toUTCString() + ";";
+            // Replace to /dashboard
             window.location.replace('/dashboard');
           }
           
@@ -94,7 +104,6 @@ class Login extends Component {
       // Display message based on what was invalid 🤓 
       this.clearMessage(this.state.usernameEmail.length > 2   ? "Invaild password" : "Invalid username or email-id", "#F60000");
     }
-
     // Prevent form from reloading the page
     event.preventDefault();
   }
@@ -118,13 +127,13 @@ class Login extends Component {
                       <button type="submit" id="lgn-btn">Submit</button>
                       <p id="mess"></p>
                       <p id="lgn-tag">Don't have an account? <Link to="/signup">SignUp</Link></p>
-                      <p id="fgt-tag">Forgot Password <Link to="/forgotpass">Click Here</Link></p>
+                      {/* <p id="fgt-tag">Forgot Password <Link to="/forgotpass">Click Here</Link></p>
                       <p id="or-tag"><span>or</span></p>
-                      <hr/>
+                      <hr/> */}
                     </form>
-                    <button id="oauth-btn"><img
+                    {/* <button id="oauth-btn"><img
                       src="https://img.icons8.com/fluent/96/000000/google-logo.png" alt=""/> Login/Signup with Google
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </Route>

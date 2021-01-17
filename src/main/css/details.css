@@ -4,6 +4,7 @@
 
 .player-name-tag {
   font-family: "Poppins", sans-serif;
+  cursor: pointer;
   margin-left: 6px;
   font-weight: 600;
 }
@@ -40,10 +41,21 @@
   display: none; /* Safari and Chrome */
 }
 
-@media (max-width: 768px) {
+#errmess{
+  margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
 
+.player-checkboxes{
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
   .playernames-col-inner {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.555);
     backdrop-filter: blur(40px);
     margin-bottom: 30px;
   }
