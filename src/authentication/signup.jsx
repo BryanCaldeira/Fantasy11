@@ -123,7 +123,7 @@ class SignUp extends Component {
 
   // Verify the OTP 😎 
   verifyOtp(event) {
-    let url = `https://fantasy11api.herokuapp.com//vr/otp/${btoa(this.state.email)}/${btoa(this.state.otpPin)}/`;
+    let url = `https://fantasy11api.herokuapp.com/vr/otp/${btoa(this.state.email)}/${btoa(this.state.otpPin)}/`;
     
     axios.get(url).then((response) => {
       // Check weather user OTP was correct and store it in verified 🤓 
@@ -148,7 +148,7 @@ class SignUp extends Component {
     
     // Check if password fields match 🧐
     if(this.state.password === this.state.repassword){
-      let url = `https://fantasy11api.herokuapp.com//in/${btoa(this.state.username)}/${btoa(this.state.email)}/${btoa('bryan')}/${btoa(this.state.password)}/`;
+      let url = `https://fantasy11api.herokuapp.com/in/${btoa(this.state.username)}/${btoa(this.state.email)}/${btoa('bryan')}/${btoa(this.state.password)}/`;
       
       axios.get(url).then((response)=>{
         // Check User account was created 🤓 
