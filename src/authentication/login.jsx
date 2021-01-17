@@ -68,11 +68,11 @@ class Login extends Component {
       // Check if Email or Username to hit appropriate link 🤓
       if (this.state.usernameEmail.match(emailPattern)) {
         // Extract user details using email id 📧 
-        url = `http://127.0.0.1:5000/exe/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
+        url = `https://fantasy11api.herokuapp.com//exe/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
       } 
       else {
         // Extract user details using username 👦 
-        url = `http://127.0.0.1:5000/exu/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
+        url = `https://fantasy11api.herokuapp.com//exu/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
       }
 
       // Make a API call 😎 

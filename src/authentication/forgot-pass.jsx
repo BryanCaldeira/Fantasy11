@@ -28,7 +28,7 @@ class ForgotPassword extends Component {
     }
 
     forgotPass(event){
-      let url = `http://127.0.0.1:5000/fp/otp/${btoa(this.state.email)}/`;
+      let url = `https://fantasy11api.herokuapp.com//fp/otp/${btoa(this.state.email)}/`;
       console.log(this.state.email);
       axios.get(url)
       .then((response)=> {

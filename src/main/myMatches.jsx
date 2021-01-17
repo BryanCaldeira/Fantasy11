@@ -57,7 +57,7 @@ class myMatches extends Component {
     live_matches = [];
     upcoming_matches = []
     axios
-      .get(`http://127.0.0.1:5000/matches/`)
+      .get(`https://fantasy11api.herokuapp.com//matches/`)
       .then((response) => {
         response.data['final_data'].forEach(match=>{
           for(let i=0; i<array.length; i++){

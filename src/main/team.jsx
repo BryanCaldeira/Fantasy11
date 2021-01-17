@@ -73,7 +73,7 @@ class Team extends Component {
   getSummary(){
     if(uid){
       axios
-        .get(`http://localhost:5000/squad/${uid}/`)
+        .get(`https://fantasy11api.herokuapp.com//squad/${uid}/`)
         .then((response) => {
           final_player_list = response.data.final_data[0].players.concat(response.data.final_data[1].players)
           console.log(final_player_list);

@@ -25,7 +25,7 @@ class DashBoard extends Component {
 
   matches(){
     axios
-      .get(`http://127.0.0.1:5000/matches/`)
+      .get(`https://fantasy11api.herokuapp.com//matches/`)
       .then((response) => {
         console.log("final_data: ",response.data);
         

@@ -50,7 +50,7 @@ class Details extends Component {
       showMatchDetails: false,
     });
     axios
-      .get(`http://localhost:5000/squad/${id}/`)
+      .get(`https://fantasy11api.herokuapp.com//squad/${id}/`)
       .then((response) => {
         console.log(response.data['final_data']);
 
@@ -87,7 +87,7 @@ class Details extends Component {
   makeTeam() {
     let errMess = document.getElementById('errmess');
     if (playerList.length === 11) {
-      axios.get(`http://localhost:5000/maketeam/${btoa(secretKey)}/${btoa(uname)}/${btoa(email)}/${btoa(uid)}/${btoa(playerList.toString())}/`)
+      axios.get(`https://fantasy11api.herokuapp.com//maketeam/${btoa(secretKey)}/${btoa(uname)}/${btoa(email)}/${btoa(uid)}/${btoa(playerList.toString())}/`)
         .then((response) => {
           if(response.data['check'])
             setTimeout(()=>window.location.replace('/dashboard'), 5000);
