@@ -54,7 +54,7 @@ class SignUp extends Component {
     if(this.state.username.length > 7) {
       setTimeout(()=>{
         let unameMess = document.getElementById('uname-mess');
-        let url = `https://fantasy11api.herokuapp.com//ck/${btoa(event.target.value)}/`;
+        let url = `https://fantasy11api.herokuapp.com/ck/${btoa(event.target.value)}/`;
         axios.get(url).then((response) => {
           unameMess.innerHTML = response.data['message'];
 
@@ -81,7 +81,7 @@ class SignUp extends Component {
     signUpBtn.disabled = true;
 
     if (this.state.username.length > 7 && this.state.email.length > 2) {
-      let url = `https://fantasy11api.herokuapp.com//vr/${btoa(this.state.username)}/${btoa(this.state.email)}/`;
+      let url = `https://fantasy11api.herokuapp.com/vr/${btoa(this.state.username)}/${btoa(this.state.email)}/`;
       
       // Make a API call 😎 
       axios
