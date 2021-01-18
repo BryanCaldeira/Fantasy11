@@ -87,7 +87,7 @@ class Details extends Component {
   makeTeam() {
     let errMess = document.getElementById('errmess');
     if (playerList.length === 11) {
-      axios.get(`http://localhost:5000/maketeam/${btoa(secretKey)}/${btoa(uname)}/${btoa(email)}/${btoa(uid)}/${btoa(playerList.toString())}/`)
+      axios.get(`https://fantasy11api.herokuapp.com/maketeam/${btoa(secretKey)}/${btoa(uname)}/${btoa(email)}/${btoa(uid)}/${btoa(playerList.toString())}/`)
         .then((response) => {
           if(response.data['check']){
             let date = new Date();
