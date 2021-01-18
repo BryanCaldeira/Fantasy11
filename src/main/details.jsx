@@ -109,8 +109,8 @@ class Details extends Component {
                 document.cookie = key[0]+"="+JSON.stringify(userData)+";"+date.toUTCString() +";";
               }
             }
-            setTimeout(()=>window.location.replace('/dashboard'), 5000);
           }
+          setTimeout(()=>window.location.replace('/dashboard'), 2000);
           errMess.innerHTML = response.data['message'];
         }).catch(error =>{
         console.log(error);
