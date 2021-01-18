@@ -5,6 +5,7 @@ import Background from "./images/background.jpg";
 import Switch from "react-switch";
 import axios from "axios";
 import "./css/mymatches.css"
+import Loading from "./images/loading.gif";
 
 var matches_array, live_matches, upcoming_matches;
 
@@ -22,7 +23,6 @@ class myMatches extends Component {
     if(result){
       let json_data = JSON.parse(result[1]);
       matches_array = json_data.data[4];
-      console.log(matches_array);
       this.getMatchInfos(matches_array);
     }
   }
@@ -57,7 +57,7 @@ class myMatches extends Component {
     live_matches = [];
     upcoming_matches = []
     axios
-      .get(`https://fantasy11api.herokuapp.com//matches/`)
+      .get(`https://fantasy11api.herokuapp.com/matches/`)
       .then((response) => {
         response.data['final_data'].forEach(match=>{
           for(let i=0; i<array.length; i++){
@@ -82,9 +82,14 @@ class myMatches extends Component {
 
   render() {
     if(this.state.load){
-      return(
-        <Navbar />
-      );
+      return (
+        <React.Fragment>
+          <Navbar />
+          <div id="loading-div">
+            <img src={Loading} alt="loading..." id="loading-gif"/>
+          </div>
+        </React.Fragment>
+      )
     }
     return (
       <React.Fragment>

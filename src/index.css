@@ -13,3 +13,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#loading-div{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #262626;
+  z-index: 900;
+}
+
+@media(max-width: 458px){
+  #loading-gif{
+    width: 100%;
+    height: 100%;
+  }
+}

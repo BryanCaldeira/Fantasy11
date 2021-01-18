@@ -5,8 +5,6 @@ import axios from "axios";
 import Background from "./images/background.jpg";
 import "./css/team.css";
 
-
-var apikey = "emBYZiXkANWVscCOVI0um4b2Unl2";
 var uid, final_player_list=[], user_matches_list = [];
 
 class Team extends Component {
@@ -73,10 +71,9 @@ class Team extends Component {
   getSummary(){
     if(uid){
       axios
-        .get(`https://fantasy11api.herokuapp.com//squad/${uid}/`)
+        .get(`https://fantasy11api.herokuapp.com/squad/${uid}/`)
         .then((response) => {
           final_player_list = response.data.final_data[0].players.concat(response.data.final_data[1].players)
-          console.log(final_player_list);
           this.changeName();
         })
         .catch((error) => {

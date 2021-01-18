@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "../authentication/navbar";
 import Background from './images/background.jpg';
 import './css/details.css';
+import Loading from "./images/loading.gif";
 
 var playerList = [];
 var uid, result, secretKey, uname, email;
@@ -50,7 +51,7 @@ class Details extends Component {
       showMatchDetails: false,
     });
     axios
-      .get(`https://fantasy11api.herokuapp.com//squad/${id}/`)
+      .get(`https://fantasy11api.herokuapp.com/squad/${id}/`)
       .then((response) => {
         console.log(response.data['final_data']);
 
@@ -87,16 +88,34 @@ class Details extends Component {
   makeTeam() {
     let errMess = document.getElementById('errmess');
     if (playerList.length === 11) {
-      axios.get(`https://fantasy11api.herokuapp.com//maketeam/${btoa(secretKey)}/${btoa(uname)}/${btoa(email)}/${btoa(uid)}/${btoa(playerList.toString())}/`)
+      axios.get(`http://localhost:5000/maketeam/${btoa(secretKey)}/${btoa(uname)}/${btoa(email)}/${btoa(uid)}/${btoa(playerList.toString())}/`)
         .then((response) => {
-          if(response.data['check'])
+          if(response.data['check']){
+            let date = new Date();
+            date.setTime(date.getTime()+(15*60*1000))
+
+            let result1 = document.cookie.match(new RegExp("userData=([^;]+)"));
+
+            let result2 = document.cookie;
+            let cookies = result2.split(";");
+            
+            if (result1) {
+              let userData = JSON.parse(result1[1]);
+              userData.data[4] = response.data["data"];
+
+              for(let i = 0; i < cookies.length; i++) {
+                var key = cookies[i].split("=");
+                document.cookie = key[0]+"="+JSON.stringify(userData)+";"+date.toUTCString() +";";
+              }
+            }
             setTimeout(()=>window.location.replace('/dashboard'), 5000);
+          }
           errMess.innerHTML = response.data['message'];
         }).catch(error =>{
         console.log(error);
       });
     } else {
-      let errMess = document.getElementById('errmess');
+      errMess = document.getElementById('errmess');
       errMess.innerHTML = `Select 11 players <br/>You have selected ${playerList.length} players.`;
       setTimeout(() => {
         errMess.innerHTML = '';
@@ -105,6 +124,16 @@ class Details extends Component {
   }
 
   render() {
+    if(!this.state.showMatchDetails){
+      return (
+        <React.Fragment>
+          <Navbar />
+          <div id="loading-div">
+            <img src={Loading} alt="loading..." id="loading-gif"/>
+          </div>
+        </React.Fragment>
+      )
+    }
     return (
       <React.Fragment>
         <Navbar/>

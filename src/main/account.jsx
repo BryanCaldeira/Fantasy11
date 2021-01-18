@@ -39,7 +39,7 @@ class Account extends Component {
   delete() {
     axios
       .get(
-        `https://fantasy11api.herokuapp.com//del/${btoa(userData.data[0])}/${btoa(userData.data[1])}/${btoa(userData.data[2])}/`
+        `https://fantasy11api.herokuapp.com/del/${btoa(userData.data[0])}/${btoa(userData.data[1])}/${btoa(userData.data[2])}/`
       )
       .then((response) => {
         if (response.data["check"]) {
@@ -63,7 +63,6 @@ class Account extends Component {
     return (
       <React.Fragment>
         <Navbar />
-
         <div id="user-avatar-div">
           <img id="user-avatar" src={UserAvatar} alt="user-avatar" />
           {this.state.deleteModal ? (

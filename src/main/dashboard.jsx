@@ -5,6 +5,7 @@ import Navbar from "../authentication/navbar";
 import "./css/dashboard.css"
 
 import Background from './images/background.jpg'
+import Loading from "./images/loading.gif";
 
 import { Link } from "react-router-dom";
 
@@ -25,7 +26,7 @@ class DashBoard extends Component {
 
   matches(){
     axios
-      .get(`https://fantasy11api.herokuapp.com//matches/`)
+      .get(`https://fantasy11api.herokuapp.com/matches/`)
       .then((response) => {
         console.log("final_data: ",response.data);
         
@@ -73,7 +74,14 @@ class DashBoard extends Component {
 
   render() {
     if(!this.state.load){
-      return <Navbar />
+      return (
+        <React.Fragment>
+          <Navbar />
+          <div id="loading-div">
+            <img src={Loading} alt="loading..." id="loading-gif"/>
+          </div>
+        </React.Fragment>
+      )
     }
     return (
     <React.Fragment>

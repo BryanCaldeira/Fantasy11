@@ -54,7 +54,7 @@ class SignUp extends Component {
     if(this.state.username.length > 7) {
       setTimeout(()=>{
         let unameMess = document.getElementById('uname-mess');
-        let url = `https://fantasy11api.herokuapp.com//ck/${btoa(event.target.value)}/`;
+        let url = `https://fantasy11api.herokuapp.com/ck/${btoa(event.target.value)}/`;
         axios.get(url).then((response) => {
           unameMess.innerHTML = response.data['message'];
 
@@ -81,7 +81,7 @@ class SignUp extends Component {
     signUpBtn.disabled = true;
 
     if (this.state.username.length > 7 && this.state.email.length > 2) {
-      let url = `https://fantasy11api.herokuapp.com//vr/${btoa(this.state.username)}/${btoa(this.state.email)}/`;
+      let url = `https://fantasy11api.herokuapp.com/vr/${btoa(this.state.username)}/${btoa(this.state.email)}/`;
       
       // Make a API call 😎 
       axios
@@ -123,7 +123,7 @@ class SignUp extends Component {
 
   // Verify the OTP 😎 
   verifyOtp(event) {
-    let url = `https://fantasy11api.herokuapp.com//vr/otp/${btoa(this.state.email)}/${btoa(this.state.otpPin)}/`;
+    let url = `https://fantasy11api.herokuapp.com/vr/otp/${btoa(this.state.email)}/${btoa(this.state.otpPin)}/`;
     
     axios.get(url).then((response) => {
       // Check weather user OTP was correct and store it in verified 🤓 
@@ -148,7 +148,7 @@ class SignUp extends Component {
     
     // Check if password fields match 🧐
     if(this.state.password === this.state.repassword){
-      let url = `https://fantasy11api.herokuapp.com//in/${btoa(this.state.username)}/${btoa(this.state.email)}/${btoa('bryan')}/${btoa(this.state.password)}/`;
+      let url = `https://fantasy11api.herokuapp.com/in/${btoa(this.state.username)}/${btoa(this.state.email)}/${btoa('bryan')}/${btoa(this.state.password)}/`;
       
       axios.get(url).then((response)=>{
         // Check User account was created 🤓 

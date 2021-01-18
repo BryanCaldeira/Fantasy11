@@ -18,7 +18,6 @@ import background from "./images/back1.png";
 
 var emailPattern = /^[a-zA-Z0-9]+[\._]?[a-zA-Z0-9]+[@]\w+[.]\w{2,3}$/;
 var url;
-var data;
 
 class Login extends Component {
   constructor(props) {
@@ -68,11 +67,11 @@ class Login extends Component {
       // Check if Email or Username to hit appropriate link 🤓
       if (this.state.usernameEmail.match(emailPattern)) {
         // Extract user details using email id 📧 
-        url = `https://fantasy11api.herokuapp.com//exe/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
+        url = `https://fantasy11api.herokuapp.com/exe/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
       } 
       else {
         // Extract user details using username 👦 
-        url = `https://fantasy11api.herokuapp.com//exu/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
+        url = `https://fantasy11api.herokuapp.com/exu/${btoa(this.state.usernameEmail)}/${btoa(this.state.password)}/`;
       }
 
       // Make a API call 😎 
